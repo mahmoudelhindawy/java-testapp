@@ -49,7 +49,7 @@
        dest: /var/lib/tomcat8/webapps/
        mode: 0777   
        
-   - name:  delete file in a remote server
+   - name:  create file in a remote server
      file:
        path: /var/lib/tomcat8/webapps/devops.html
        state: touch

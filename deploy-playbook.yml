@@ -7,6 +7,11 @@
   #  package_name: devopsarea-1.0.war
 
   tasks:
+   - name:  delete file in a remote server
+     file:
+       path: /var/lib/tomcat8/webapps/devops.html
+       state: absent
+  
    - name: Install Java
      apt: name=default-jdk state=present
 
@@ -42,4 +47,9 @@
      copy:
        src: ./target/devopsarea-1.0.war
        dest: /var/lib/tomcat8/webapps/
-       mode: 0777     
+       mode: 0777   
+       
+   - name:  delete file in a remote server
+     file:
+       path: /var/lib/tomcat8/webapps/devops.html
+       state: touch

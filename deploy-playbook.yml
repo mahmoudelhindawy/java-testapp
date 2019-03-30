@@ -9,7 +9,7 @@
   tasks:
    - name:  delete file in a remote server
      file:
-       path: /var/lib/tomcat8/webapps/devops.html
+       path: /var/lib/tomcat8/webapps/ROOT/devops.html
        state: absent
   
    - name: Install Java
@@ -51,5 +51,5 @@
        
    - name:  create file in a remote server
      file:
-       path: /var/lib/tomcat8/webapps/devops.html
+       path: /var/lib/tomcat8/webapps/ROOT/devops.html
        state: touch

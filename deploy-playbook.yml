@@ -1,5 +1,5 @@
 ---
-- hosts: tomcat
+- hosts: webservers
   serial: 1
   become: yes
   become_method: sudo
@@ -9,24 +9,24 @@
   tasks:
    - name:  delete file in a remote server
      file:
-       path: /var/lib/tomcat8/webapps/ROOT/devops.html
+       path: /var/lib/tomcat7/webapps/ROOT/devops.html
        state: absent
   
    - name: Install Java
      apt: name=default-jdk state=present
 
    - name: Install Tomcat
-     apt: name=tomcat8 state=present
+     apt: name=tomcat7 state=present
 
    - name: Install Tomcat admin
-     apt: name=tomcat8-admin state=present
+     apt: name=tomcat7-admin state=present
 
    - name: Configure Tomcat users
      copy:
        src: tomcat-users.xml
-       dest: /etc/tomcat8/
+       dest: /etc/tomcat7/
        owner: root
-       group: tomcat8
+       group: tomcat7
        mode: 0640
 
    - name: Stop the firewall
@@ -46,10 +46,10 @@
    - name: deploy the generated package to tomcat
      copy:
        src: ./target/devopsarea-1.0.war
-       dest: /var/lib/tomcat8/webapps/
+       dest: /var/lib/tomcat7/webapps/
        mode: 0777   
        
    - name:  create file in a remote server
      file:
-       path: /var/lib/tomcat8/webapps/ROOT/devops.html
+       path: /var/lib/tomcat7/webapps/ROOT/devops.html
        state: touch
